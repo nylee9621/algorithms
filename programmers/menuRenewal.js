@@ -1,70 +1,45 @@
-const orders = ["XYZ", "XWY", "WXA"];
+const orders = ["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"];
 const course = [2,3,4];
 
 function solution(orders, course) {
-  let alphabet = [];
   let combArr = [];
-  let objByCourse = [];
-  let result = [];
+  const result = [];
   
   for(let i = 0; i < orders.length; i++) {
-    for(let j = 0; j < orders[i].length; j++) {
-      if(!alphabet.includes(orders[i][j])) {
-        alphabet.push(orders[i][j]);
-      }
+    for(let j = 2; j <= orders[i].length; j++) {
+      makingComb(Array.from(orders[i]), j).forEach(a => {
+        const comb = a.sort().join('');
+        if(combArr.map(b => b['menu']).includes(comb)) {
+          combArr.filter(c => c['menu'] === comb)[0]['count']++;
+        } else {
+          combArr.push({menu: comb, count: 1});
+        }
+      })
     }
   }
   
-  for(let k = 2; k <= 10; k++) {
-    combArr.push(...makingComb(alphabet, k));
-  }
-  
-  for(let l = 0; l < combArr.length; l++) {
-    let num = 0;
+  for(let k = 0; k < course.length; k++) {
+    const tempArr = combArr.filter(el => el['menu'].length === course[k] && el['count'] > 1).sort((a, b) => b['count'] - a['count']);
+    const tempResult = [];
     
-    for(let m = 0; m < orders.length; m++) {
-      let tf = true;
-      
-      for(let n = 0; n < combArr[l].length; n++) {
-        if(!orders[m].includes(combArr[l][n])) {
-          tf = false;
-          break;
-        }
-      }
-      if(tf) num++;
+    if(tempArr.length > 0) {
+      tempResult.push(tempArr[0]);
     }
     
-    if(num > 1) {
-      if(objByCourse[num]) {
-        objByCourse[num] = [...objByCourse[num], [combArr[l], num]];
-      } else {
-        objByCourse[num] = [[combArr[l], num]];
+    if(tempArr.length > 1) {
+      for(let l = 1; l < tempArr.length; l++) {
+        if(tempArr[l]['count'] === tempArr[0]['count']) {
+          tempResult.push(tempArr[l]);
+        } else break;
       }
     }
-  }
-  
-  for(let o = objByCourse.length - 1; o > 1; o--) {
-    for(let p = 0; p < objByCourse[o].length; p++) {
-      if(course.includes(objByCourse[o][p][0].length)) {
-        let tf = true;
-        
-        for(let q = 0; q < result.length; q++) {
-          if(result[q][0].length === objByCourse[o][p][0].length) {
-            if(result[q][1] < objByCourse[o][p][1]) {
-              result = result.filter(el => el !== result[q]);
-            } else if(result[q][1] > objByCourse[o][p][1]) {
-              tf = false;
-            }
-          }
-        }
-        
-        if(tf) result.push(objByCourse[o][p]);
-      } 
+    
+    if(tempResult.length > 0) {
+      result.push(...tempResult.map(el => el['menu']));
     }
   }
   
-  return result.map(el => el[0].sort().join('')).sort();
-  
+  return result.sort();
 }
 
 const makingComb = (arr, leng) => {
