@@ -2,31 +2,48 @@ const info = ["java backend junior pizza 150","python frontend senior chicken 21
 const query = ["java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"];
 
 function solution(info, query) {
+  const hashArr = [[0, 0, 0, 0], [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 1, 0, 0], [1, 0, 1, 0], [1, 0, 0, 1], [0, 1, 1, 0], [0, 1, 0, 1], [0, 0, 1, 1], [1, 1, 1, 0], [1, 1, 0, 1], [1, 0, 1, 1], [0, 1, 1, 1], [1, 1, 1, 1]];
+  const infoObj = {};
   const result = [];
   
-  for(let i = 0; i < query.length; i++) {
-    const qSkill = query[i].split(' and ')[0];
-    const qPos = query[i].split(' and ')[1];
-    const qCareer = query[i].split(' and ')[2];
-    const qFood = query[i].split(' and ')[3].split(' ')[0];
-    const qScore = Number(query[i].split(' and ')[3].split(' ')[1]);
-    const qArr = [qSkill, qPos, qCareer, qFood, qScore];
-    let sorted = [...info];
+  for(let i = 0; i < info.length; i++) {
+    const iSkill = info[i].split(' ')[0];
+    const iPos = info[i].split(' ')[1];
+    const iCareer = info[i].split(' ')[2];
+    const iFood = info[i].split(' ')[3];
+    const iScore = Number(info[i].split(' ')[4]);
     
-    qArr.forEach((el, idx) => {
-      if(el !== '-') {
-        if(idx < 4) {
-          sorted = sorted.filter(str => str.split(' ')[idx] === el);
-        } else {
-          sorted = sorted.filter(str => Number(str.split(' ')[idx]) >= el);
-        }
+    for(let j = 0; j < hashArr.length; j++) {
+      const key = `${hashArr[j][0] ? iSkill : '-'}${hashArr[j][1] ? iPos : '-'}${hashArr[j][2] ? iCareer : '-'}${hashArr[j][3] ? iFood : '-'}`;
+      
+      if(Object.keys(infoObj).includes(key)) {
+        infoObj[key] = [...infoObj[key], iScore].sort((a, b) => a - b);
+      } else {
+        infoObj[key] = [iScore];
       }
-    })
-    
-    result.push(sorted.length);
+    }
   }
+  // console.log(infoObj);
   
-  return result;
+  const search = (arr, num) => {
+    if(arr.length <= 1) {
+      return;
+    }
+    
+    const mid = Math.floor(arr.length / 2);
+    console.log(arr, num, mid);
+  };
+  
+  for(let q = 0; q < query.length; q++) {
+    const qSkill = query[q].split(' ')[0];
+    const qPos = query[q].split(' ')[2];
+    const qCareer = query[q].split(' ')[4];
+    const qFood = query[q].split(' ')[6];
+    const qScore = Number(query[q].split(' ')[7]);
+    const key = `${qSkill}${qPos}${qCareer}${qFood}`;
+    
+    search(infoObj[key], qScore);
+  }
 }
 
 solution(info, query);
