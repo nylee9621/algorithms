@@ -23,15 +23,31 @@ function solution(info, query) {
       }
     }
   }
-  // console.log(infoObj);
   
   const search = (arr, num) => {
-    if(arr.length <= 1) {
-      return;
+    let left = 0;
+    let right = arr.length - 1;
+    let result = 0;
+    
+    while(true) {
+      let mid = Math.ceil((left + right) / 2);
+      
+      if(left >= right) {
+        if(arr[mid] >= num) {
+          return arr.length - mid;
+        } else {
+          return arr.length - mid - 1;
+        }
+      }
+      
+      if(num <= arr[mid]) {
+        right = mid - 1;
+      } else {
+        left = mid;
+      }
     }
     
-    const mid = Math.floor(arr.length / 2);
-    console.log(arr, num, mid);
+    return result;
   };
   
   for(let q = 0; q < query.length; q++) {
@@ -42,8 +58,10 @@ function solution(info, query) {
     const qScore = Number(query[q].split(' ')[7]);
     const key = `${qSkill}${qPos}${qCareer}${qFood}`;
     
-    search(infoObj[key], qScore);
+    result.push(search(infoObj[key], qScore));
   }
+  
+  return result;
 }
 
 solution(info, query);
