@@ -24,3 +24,6 @@ function solution(students) {
 
 const result = solution(students);
 console.log(result);
+
+//테스트 케이스는 돌아가나 sort()가 마구잡이로 사용됨.
+//시간복잡도가 더 낮은 배열정렬법이 존재할 수 있음.
