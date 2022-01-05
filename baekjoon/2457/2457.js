@@ -1,10 +1,10 @@
 const fs = require('fs');
-let input = fs.readFileSync('./input2.txt').toString();
+let input = fs.readFileSync('./input1.txt').toString();
 input = input.split('\r\n');
 const num = +input[0];
 const flowers = [];
 
-//{'시작': 끝}
+//{start: 값, end: 값}
 for(let i = 1; i < input.length; i++) {
     const term = input[i].split(' ').map(el => +el);
     const start = term[0] * 100 + term[1];
@@ -28,4 +28,5 @@ function solution(num, flowers) {
     return acc;
 }
 
-solution(num, flowers);
+const result = solution(num, flowers);
+console.log(result);
