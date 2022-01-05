@@ -1,7 +1,7 @@
 const fs = require('fs');
 let input = fs.readFileSync('./input1.txt').toString();
 input = input.split('\r\n');
-const num = +input[0];
+// const num = +input[0];
 const flowers = [];
 
 //{start: 값, end: 값}
@@ -12,7 +12,7 @@ for(let i = 1; i < input.length; i++) {
     flowers.push({start: start, end: end})
 }
 
-function solution(num, flowers) {
+function solution(flowers) {
     const startPoint = 301; //공주님 좋아하시는 날짜 start
     const endPoint = 1130; //공주님 좋아하시는 날짜 end
     let temp = 0; //지금 도달한 포인트
@@ -28,5 +28,5 @@ function solution(num, flowers) {
     return acc;
 }
 
-const result = solution(num, flowers);
+const result = solution(flowers);
 console.log(result);
