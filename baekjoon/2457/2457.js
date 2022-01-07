@@ -1,5 +1,5 @@
 const fs = require('fs');
-let input = fs.readFileSync('./input1.txt').toString();
+let input = fs.readFileSync('./input2.txt').toString();
 input = input.split('\r\n');
 // const num = +input[0];
 const flowers = [];
@@ -19,9 +19,11 @@ function solution(flowers) {
     let acc = 0; //거쳐간 포인트 수
 
     while(true) {
-        if(temp > endPoint) break;
+        const possibleCases = flowers.filter(el => el.start <= (temp === 0 ? startPoint : temp));
 
-        temp = flowers.filter(el => el.start <= (temp === 0 ? startPoint : temp)).map(el => el.end).sort((a, b) => b - a)[0];
+        if(temp > endPoint || possibleCases.length <= 1) break;
+
+        temp = possibleCases.map(el => el.end).sort((a, b) => b - a)[0];
         acc++;
     }
 
