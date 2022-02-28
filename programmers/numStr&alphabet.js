@@ -11,7 +11,7 @@ function solution(s) {
         }
     }
 
-    return result;
+    return Number(result);
 }
 
 solution(s);
