@@ -17,20 +17,22 @@ function permutation(arr, num){
 function solution(k, dungeons) {
   const per = permutation(dungeons, dungeons.length);
   let max = 0;
-	console.log(per);
+  
   for(let i = 0; i < per.length; i++) {
     let temp = k;
-    for(let j = 0; j < per[i].length; j++) {
-      if(temp >= per[i][j][0]) {
-        temp -= per[i][j][1];
-      } else {
+    let j = 0;
+    
+    while(true) {
+      if(j === per[i].length || temp < per[i][j][0]) {
         if(j > max) max = j;
         break;
       }
-      console.log(temp);
+      temp -= per[i][j][1];
+      j++;
     }
   }
-  // return max;
+  
+  return max;
 }
 
 solution(k, dungeons);
