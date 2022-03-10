@@ -12,6 +12,8 @@ function solution(d, budget) {
     i++;
   }
   
+  if(acc === budget) return i;
+  else return i - 1;
 }
 
 solution(d, budget);
