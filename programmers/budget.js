@@ -14,5 +14,6 @@ function solution(d, budget) {
     else break;
   }
 
+  return arr.length;
 }
 solution(d, budget);
