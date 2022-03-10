@@ -1,19 +1,18 @@
-const d = [1,3,2,5,4];
-const budget = 9;
+const d = [100];
+const budget = 101;
 
 function solution(d, budget) {
-  d.sort();
+  d.sort((a, b) => a - b);
+  const arr = [];
   let acc = 0;
-  let i = 0;
   
-  while(true) {
-    if(acc >= budget) break;
-    acc += d[i];
-    i++;
+  for(let i = 0; i < d.length; i++) {
+    if(acc + d[i] <= budget) {
+      arr.push(d[i]);
+      acc += d[i];
+    }
+    else break;
   }
-  
-  if(acc === budget) return i;
-  else return i - 1;
-}
 
+}
 solution(d, budget);
