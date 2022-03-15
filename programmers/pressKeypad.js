@@ -3,6 +3,7 @@ const hand = 'right';
 
 function solution(numbers, hand) {
     let result = 0;
+    const pos = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 0: []};
     for(let i = 0; i < number.length; i++) {
 
     }
