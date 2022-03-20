@@ -1,4 +1,3 @@
 function solution(p) {
-    var answer = '';
-    return answer;
+    return result;
 }
