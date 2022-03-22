@@ -1,6 +1,8 @@
-function solution(p) {
+const p = "(()())()";
 
-    return result;
+function solution(p) {
+  let result = '';
+  return result;
 }
 
 solution(p);
