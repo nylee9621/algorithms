@@ -2,6 +2,8 @@ const p = "(()())()";
 
 function solution(p) {
   let result = '';
+  let open = 0;
+  let close = 0;
 
   if(p === '') return p;
 
