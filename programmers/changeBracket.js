@@ -4,6 +4,7 @@ function solution(p) {
   let result = '';
   let open = 0;
   let close = 0;
+  let stack = [];
 
   if(p === '') return p;
 
