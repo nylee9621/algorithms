@@ -11,8 +11,6 @@ function solution(p) {
   while(true) {
     if(true) {
 
-    } else if(true) {
-
     } else {
 
     }
