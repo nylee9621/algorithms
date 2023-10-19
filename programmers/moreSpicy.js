@@ -1,6 +1,23 @@
 const scoville = [1, 2, 3, 9, 10, 12]
 const K = 7;
 
+class MinHeap {
+    constructor() {
+      // 힙을 저장할 배열
+      this.heap = [];
+    }
+  
+    // 힙의 크기를 반환하는 메서드
+    size() {
+      return this.heap.length;
+    }
+  
+    // 두 값을 바꿔주는 메서드
+    swap(idx1, idx2) {
+      [this.heap[idx1], this.heap[idx2]] = [this.heap[idx2], this.heap[idx1]];
+    }
+  }
+
 function solution(scoville, K) {
     let result = 0;
 
