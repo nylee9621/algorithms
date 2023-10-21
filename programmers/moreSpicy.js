@@ -29,16 +29,21 @@ const removeNode = arr => {
   const el = temp[0];
   
   while(true) {
-    if(el > temp[leftChildIdx(elIdx)] && el > temp[rightChildIdx(elIdx)]) {
-      const smaller = temp[leftChildIdx(elIdx)] < temp[rightChildIdx(elIdx)] ? leftChildIdx(elIdx) : rightChildIdx(elIdx);
-      temp = swapNode(temp, smaller, elIdx);
-      elIdx = smaller;
-    } else if(el > temp[leftChildIdx(elIdx)]) {
-      temp = swapNode(temp, leftChildIdx(elIdx), elIdx);
-      elIdx = leftChildIdx(elIdx);
-    } else if(el > temp[rightChildIdx(elIdx)]) {
-      temp = swapNode(temp, rightChildIdx(elIdx), elIdx);
-      elIdx = rightChildIdx(elIdx);
+    if(rightChildIdx(elIdx) < temp.length) {
+      if(el > temp[leftChildIdx(elIdx)] && el > temp[rightChildIdx(elIdx)]) {
+        const smaller = temp[leftChildIdx(elIdx)] < temp[rightChildIdx(elIdx)] ? leftChildIdx(elIdx) : rightChildIdx(elIdx);
+        temp = swapNode(temp, smaller, elIdx);
+        elIdx = smaller;
+      } else if(el > temp[leftChildIdx(elIdx)]) {
+         temp = swapNode(temp, leftChildIdx(elIdx), elIdx);
+         elIdx = leftChildIdx(elIdx);
+      } else if(el > temp[rightChildIdx(elIdx)]) {
+         temp = swapNode(temp, rightChildIdx(elIdx), elIdx);
+         elIdx = rightChildIdx(elIdx);
+      } else break;
+    } else if(leftChildIdx(elIdx) < temp.length && el > temp[leftChildIdx(elIdx)]) {
+       temp = swapNode(temp, leftChildIdx(elIdx), elIdx);
+       elIdx = leftChildIdx(elIdx);
     } else break;
   }
   
