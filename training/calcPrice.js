@@ -29,6 +29,13 @@
 // num = Number(prompt("입력 : "));
 // console.log(`총 금액: ${price * num}원`);
 
+let nameTag = [{idx: 1, name: '감자'}, {idx: 2, name: '옥수수'}, {idx: 3, name: '수박'}];
+let priceTag = [
+    {idx: 1, group: 1, tag: '1천원어치', price: 1000}, {idx: 2, group: 1, tag: '2천원어치', price: 2000}, {idx: 3, group: 1, tag: '3천원어치', price: 3000}, 
+    {idx: 1, group: 2, tag: '4천원어치', price: 4000}, {idx: 2, group: 2, tag: '5천원어치', price: 5000}, {idx: 3, group: 2, tag: '6천원어치', price: 6000}, 
+    {idx: 1, group: 3, tag: '1만원어치', price: 10000}, {idx: 2, group: 3, tag: '2만원어치', price: 20000}, {idx: 3, group: 1, tag: '3만원어치', price: 30000}, 
+];
+
 function foodSelect(){
     console.log("다음 세 가지 중 고르시오. 1. 감자. 2.옥수수 3. 수박 4. 호박 5. 과자");
     var userInput1 = Number(prompt("입력 : "));
