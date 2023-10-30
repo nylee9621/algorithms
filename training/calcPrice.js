@@ -80,4 +80,4 @@ function foodNumberSelect(food,price){
 }
 
 let sum = foodSelect();
-console.log(sum);
+console.log(`총 금액: ${sum}원`);
