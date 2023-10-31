@@ -37,7 +37,8 @@ let priceTag = [
 ];
 
 function foodSelect(){
-    console.log("다음 세 가지 중 고르시오. 1. 감자. 2.옥수수 3. 수박 4. 호박 5. 과자");
+    console.log("다음 세 가지 중 고르시오.");
+    nameTag.forEach(el => console.loe(`${el.idx}. ${el.name}`));
     var userInput1 = Number(prompt("입력 : "));
 
     if(userInput1 == 1){
