@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var isPlayer1 = 0;
+        var isPlayer2 = 0;
+        var isPlayer3 = 0;
+        var isPlayer4 = 0;
+
+        // var player1 = prompt("첫번째 플레이어 이름을 적어주세요: ");
+        // var player2 = prompt("두번째 플레이어 이름을 적어주세요: ");
+        // var player3 = prompt("세번째 플레이어 이름을 적어주세요: ");
+        // var player4 = prompt("네번째 플레이어 이름을 적어주세요: ");
+
+        var choice1 = 0;
+        var choice2 = 0;
+        var choice3 = 0;
+        var choice4 = 0;
+
+        var winner = 0;
+
+        // while(true) {
+            if(!isPlayer1) choice1 = prompt(`1이(가) 무엇을 낼까요. 1. 가위 2. 바위 3. 보`);
+            if(!isPlayer2) choice2 = prompt(`2이(가) 무엇을 낼까요. 1. 가위 2. 바위 3. 보`);
+            if(!isPlayer2) choice3 = prompt(`3이(가) 무엇을 낼까요. 1. 가위 2. 바위 3. 보`);
+            if(!isPlayer2) choice4 = prompt(`4이(가) 무엇을 낼까요. 1. 가위 2. 바위 3. 보`);
+
+            if(!isPlayer1 && !isPlayer2 && !!whoWin(choice1, choice2)) {
+                
+            }
+        // }
+
+        function whoWin(rsp1, rsp2) {
+            let temp1 = (rsp1 == 1 && rsp2 == 3) ? 4 : rsp1;
+            let temp2 = rsp2;
+
+            if(temp1 < temp2) return rsp2;
+            else if(temp1 > temp2) return rsp1;
+            else return 0;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var wallet = 10000;
+        var isGiveMoeny = 0;
+        var isOut = false;
+        console.log(`현재 소지 금액: ${wallet}원`)
+
+        giveMoney();
+
+        let snack1 = Number(prompt("떡볶이 가격을 정해주세요: (원)"));
+        let snack2 = Number(prompt("우동 가격을 정해주세요: (원)"));
+        let snack3 = Number(prompt("과자 가격을 정해주세요: (원)"));
+        let snack4 = Number(prompt("사탕 가격을 정해주세요: (원)"));
+        let snack5 = Number(prompt("김밥 가격을 정해주세요: (원)"));
+        console.log(`<메뉴판> 떡볶이 ${snack1}원 / 우동 ${snack2}원 / 과자 ${snack3}원 / 사탕 ${snack4}원 / 김밥 ${snack5}원`)
+
+        if(!isOut) checkCanBuy("떡볶이", snack1);
+        if(!isOut) checkCanBuy("우동", snack2);
+        if(!isOut) checkCanBuy("과자", snack3);
+        if(!isOut) checkCanBuy("사탕", snack4);
+        if(!isOut) checkCanBuy("김밥", snack5);
+
+        function checkCanBuy(name, price) {
+            let userInput = Number(prompt(`${name} 주문 수량을 입력해주세요: (개)`));
+            buySnack(price * userInput);
+        }
+
+        function giveMoney() {
+            let plus = Number(prompt("용돈으로 얼마를 줄것인가요: (원)"));
+            wallet = wallet + plus;
+            isGiveMoeny++;
+            console.log(`현재 소지 금액: ${wallet}`)
+        }
+
+        function calcPrice(give) {
+            wallet = wallet - give;
+            console.log(`지불 금액: ${give}, 현재 소지 금액: ${wallet}`);
+        }
+
+        function buySnack(give) {
+            if(wallet < give) {
+                console.log(`현재 ${give - wallet}원이 부족합니다.`); 
+                if(isGiveMoeny < 2) {
+                    giveMoney();
+                    buySnack(give);
+                }
+                else {
+                    isOut = !isOut;
+                    console.log('소지 금액이 부족하여 가게에서 쫓겨났습니다.');
+                    return;
+                }
+            } else {
+                calcPrice(give);
+            }
+        }
+    </script>
+</body>
+</html>
