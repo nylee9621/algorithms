@@ -48,28 +48,21 @@ let priceTag = [
 
 function foodSelect(){
     console.log("다음 세 가지 중 고르시오.");
-    nameTag.forEach(el => console.loe(`${el.idx}. ${el.name}`));
+    nameTag.forEach(el => console.log(`${el.idx}. ${el.name}`));
 
     var userInput1 = Number(prompt("입력 : "));
     for(let i in nameTag) {
         if(userInput1 == nameTag[i].idx) return foodPriceSelect(priceTag.filter(el => el.nameIdx == userInput1)[0]);
+        else 
     }
 }
 //food의 가격을 관리하는 함수
-function foodPriceSelect(food,price1,price2,price3){
-    console.log(`다음 세 가지 중 고르시오. 1. ${price1}. 2.${price2} 3. ${price3}`);
+function foodPriceSelect(priceTag){
+    console.log("다음 세 가지 중 고르시오.");
+    priceTag.forEach(el => console.log(`${el.idx}. ${el.tag}`));
     var userInput1 = Number(prompt("입력 : "));
 
-    if(userInput1 == 1){
-        return foodNumberSelect(food,price1);
-    }
-    if(userInput1 == 2){
-        return foodNumberSelect(food,price2);
-    }
-    if(userInput1 == 3){
-        return foodNumberSelect(food,price3);
-    }
-    return 0;
+    return foodNumberSelect(priceTag);
 }
 //food의 개수를 관리하는 함수
 function foodNumberSelect(food,price){
