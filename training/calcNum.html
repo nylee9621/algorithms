@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = Number(prompt('몇 개의 숫자를 입력받으시겠습니까?: '));
+        var count = 1;
+        var sum = 0;
+
+        while(count <= num) {
+            let select = Number(prompt(`${count}번째 숫자: `));
+
+            if(count > 1) {
+                console.log(`${sum} + ${select} = ${sum + select}`);
+            }
+            sum += select;
+            count++;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num1 = Number(prompt('숫자1: '));
+        var num2 = Number(prompt('숫자2: '));
+        var isCorrect = true;
+
+        var sum = Number(prompt(`${num1} + ${num2} = `));
+
+        if(sum == num1 + num2) {
+            console.log('정답입니다.');
+        } else {
+            let chance = 3;
+
+            while(true) {
+                let count = 10;
+                let correct = 0;
+                let wrong = 0;
+
+                if(chance == 0) {
+                    console.log('기회를 모두 소진하였습니다.');
+                    isCorrect = !isCorrect;
+                    break;
+                }
+
+                while(count > 0) {
+                    let sum2 = Number(prompt(`${num1} + ${num2} = `));
+
+                    if(sum2 == num1 + num2) correct++;
+                    else wrong++;
+
+                    count--;
+                }
+                
+                if(correct >= wrong) {
+                    console.log('정답입니다.');
+                    break;
+                } else {
+                    console.log(`오답입니다. 정답은 ${num1 + num2}입니다. 다시 시도하세요.`);
+                }
+
+                chance--;
+            }
+        }
+
+        if(isCorrect) {
+            let order = true;
+            let count = 5;
+            let wrong = 0;
+
+            while(true) {
+                while(count > 0) {
+                    let userInput = Number(prompt(`어느 숫자가 더 큰가요? 1. ${order ? num1 : num2} 2. ${order ? num2: num1}`));
+                    let bigger = ((num1 > num2 && order) || (num1 < num2 && !order)) ? 1 : 2;
+
+                    if(userInput != bigger) wrong++;
+
+                    order = !order;
+                    count--;
+                }
+
+                if(wrong >= 3) {
+                    console.log(`오답입니다. 정답은 ${num1 > num2 ? num1 : num2}입니다. 다시 시도하세요.`);
+                    count = 5;
+                    wrong = 0;
+                } else {
+                    console.log('정답입니다.');
+                    break;
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var count = 1;
+        var sum = 0;
+
+        while(true) {
+            console.log('1. 타코야키: 2000원 2. 해물찜: 7000원 3. 튀김요리: 5000원 4. 자동차기름: 12000원 5. 종료.');
+            let order = Number(prompt(`${count}번째 손님 선택: `));
+
+            if(order == 1) {
+            sell('타코야끼', 2000);
+            } else if(order == 2) {
+                sell('해물찜', 7000);
+            } else if(order == 3) {
+                sell('튀김요리', 5000);
+            } else if(order == 4) {
+                sell('자동차기름', 12000);
+            } else if(order == 5) {
+                console.log(`${count}번째 손님이 종료를 누르셔서 프로그램을 종료합니다.`);
+                break;
+            } else {
+                console.log('존재하지 않는 선택지입니다.');
+            }
+
+            if(order == 1 || order == 2 || order == 3 || order ==4) count++;
+        }
+        
+        function sell(obj, price) {
+            sum = sum + price;
+            console.log(`${count}번째 손님이 ${obj}를(을) 주문하셔서 현재 누적판매금액은 ${sum}원 입니다.`)
+        }
+    </script>
+</body>
+</html>
