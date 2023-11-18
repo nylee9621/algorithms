@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var player1 = prompt('첫번째 사람 이름: ');
+        var score1 = Number(prompt(`${player1}이(가) 받은 점수 입력: `));
+        
+        var player2 = prompt('두번째 사람 이름: ');
+        var score2 = Number(prompt(`${player2}이(가) 받은 점수 입력: `));
+
+        var player3 = prompt('세번째 사람 이름: ');
+        var score3 = Number(prompt(`${player3}이(가) 받은 점수 입력: `));
+
+        var player4 = prompt('네번째 사람 이름: ');
+        var score4 = Number(prompt(`${player4}이(가) 받은 점수 입력: `));
+
+        console.log(`1. ${player1} 2. ${player2} 3. ${player3} 4. ${player4} 5. 종료`);
+
+        var select1 = '';
+        var select2 = '';
+        var selectScore1 = 0;
+        var selectScore2 = 0;
+        var winner = '';
+        var loser = '';
+
+        while(true) {
+            console.log('누구와 누구를 대조시키겠습니까?');
+            select1 = Number(prompt('첫번째 사람 입력: '));
+            select2 = Number(prompt('두번째 사람 입력: '));
+
+            if(select1 == 5 && select2 == 5) break;
+            else if((select1 == 5 && select2 !== 5) || (select1 !== 5 && select2 == 5) ) console.log('잘못된 입력입니다!');
+            else {
+                if(select1 == 1) selectScore1 = score1;
+                if(select1 == 2) selectScore1 = score2;
+                if(select1 == 3) selectScore1 = score3;
+                if(select1 == 4) selectScore1 = score4;
+
+                if(select2 == 1) selectScore2 = score1;
+                if(select2 == 2) selectScore2 = score2;
+                if(select2 == 3) selectScore2 = score3;
+                if(select2 == 4) selectScore2 = score4;
+
+                if(selectScore1 > selectScore2) {
+                    if(select1 == 1) winner = player1;
+                    if(select1 == 2) winner = player2;
+                    if(select1 == 3) winner = player3;
+                    if(select1 == 4) winner = player4;
+
+                    if(select2 == 1) loser = player1;
+                    if(select2 == 2) loser = player2;
+                    if(select2 == 3) loser = player3;
+                    if(select2 == 4) loser = player4;
+                } else if(selectScore1 < selectScore2) {
+                    if(select2 == 1) winner = player1;
+                    if(select2 == 2) winner = player2;
+                    if(select2 == 3) winner = player3;
+                    if(select2 == 4) winner = player4;
+
+                    if(select1 == 1) loser = player1;
+                    if(select1 == 2) loser = player2;
+                    if(select1 == 3) loser = player3;
+                    if(select1 == 4) loser = player4;
+                }
+                
+                console.log(`시스템: ${winner}의  점수가 ${loser}의 점수보다 더 큽니다.`);
+            }
+            
+        }
+
+        
+
+
+    </script>
+</body>
+</html>

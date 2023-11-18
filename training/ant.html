@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var player1 = 5;
+        var pm1 = true;
+        var time1 = 0;
+
+        var player2 = 10;
+        var pm2 = false;
+        var time2 = 0;
+
+        var player3 = 15;
+        var pm3 = true;
+        var time3 = 0;
+
+        var timer = 0;
+
+        while(true) {
+
+            if(time1 != 0 && time2 != 0 && time3 != 0) break;
+
+            let temp1 = player1 + (pm1 ? 1 : -1);
+            if(temp1 == player2) pm1 = !pm1;
+            else player1 = temp1;
+
+            let temp2 = player2 + (pm2 ? 1 : -1);
+            if(temp2 == player1 || temp2 == player3) pm2 = !pm2;
+            else player2 = temp2;
+
+            let temp3 = player3 + (pm3 ? 1 : -1);
+            if(temp3 == player2) pm3 = !pm3;
+            else player3 = temp3;
+
+            timer++;
+
+            console.log(player1, player2, player3, timer)
+
+            if(player1 == 0 || player1 == 20) time1 = timer;
+            if(player2 == 0 || player2 == 20) time2 = timer;
+            if(player3 == 0 || player3 == 20) time3 = timer;
+
+        }
+
+        console.log(`1번개미: ${time1}분 / 2번개미: ${time2}분 / 3번개미: ${time3}분`);
+
+        if(time1 < time2) {
+            if(time2 < time3) {
+                console.log('1등 3번, 2등 2번, 3등 1번');
+            } else if(time2 > time3) {
+                if(time1 < time3) {
+                    console.log('1등 2번, 2등 3번, 3등 1번');
+                } else if(time1 > time3) {
+                    console.log('1등 2번, 2등 1번, 3등 3번');
+                }
+            }
+        } else if(time1 > time2) {
+            if(time2 > time3) {
+                console.log('1등 1번, 2등 2번, 3등 3번');
+            } else if(time2 < time3) {
+                if(time1 > time3) {
+                    console.log('1등 1번, 2등 3번, 3등 2번');
+                } else if(time1 < time3) {
+                    console.log('1등 3번, 2등 1번, 3등 2번');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

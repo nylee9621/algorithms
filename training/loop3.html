@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var price = 0;
+        var food1 = 0;
+        var food2 = 0;
+        var food31 = 0;
+        var food32 = 0;
+        var food33 = 0;
+        var needPrice = true;
+
+        var first = 0;
+        var second = 0;
+        var haveFirst = false;
+
+        while(true) {
+            console.log('1. 구구단 2. 음식점 3. 계산기 4. 종료');
+            let select1 = Number(prompt(`번호 입력: `));
+
+            if(select1 == 1) {
+
+                for(let i = 1; i < 10; i++) console.log(`2 * ${i} = ${2 * i}`);
+
+            } else if(select1 == 2) {
+
+                while(true) {
+                    if(needPrice) {
+                        food1 = Number(prompt(`볶음밥 가격: `));
+                        food2 = Number(prompt(`짜장면 가격: `));
+                        food31 = Number(prompt(`탕수육(대) 가격: `));
+                        food32 = Number(prompt(`탕수육(중) 가격: `));
+                        food33 = Number(prompt(`탕수육(소) 가격: `));
+                        needPrice = false;
+                    }
+                    console.log(`1. 볶음밥 ${food1}원 2. 짜장면 ${food2}원 3. 탕수육 대/중/소 4. 돌아가기`);
+                    let select2 = Number(prompt(`번호 입력: `));
+
+                    if(select2 == 1) {
+                        price += food1;
+                        console.log(`볶음밥 ${food1}원이 추가되어서 현재 ${price}원 입니다.`);
+                    } else if(select2 == 2) {
+                        price += food2;
+                        console.log(`짜장면 ${food2}원이 추가되어서 현재 ${price}원 입니다.`);
+                    } else if(select2 == 3) {
+                        while(true) {
+                            console.log(`1. 대 ${food31}원 2. 중 ${food32}원 3. 소 ${food33}원 4. 돌아가기`);
+                            let select3 = Number(prompt(`번호 입력: `));
+
+                            if(select3 == 1) {
+                                price += food31;
+                                console.log(`탕수육(대) ${food31}원이 추가되어서 현재 ${price}원 입니다.`);
+                            } else if(select3 == 2) {
+                                price += food32;
+                                console.log(`탕수육(중) ${food32}원이 추가되어서 현재 ${price}원 입니다.`);
+                            } else if(select3 == 3) {
+                                price += food33;
+                                console.log(`탕수육(소) ${food33}원이 추가되어서 현재 ${price}원 입니다.`);
+                            } else if(select3 == 4) break;
+                        }
+                    } else if(select2 == 4) break;
+                }
+
+            } else if(select1 == 3) {
+
+                let pm = Number(prompt(`1. 더하기 / 2. 빼기: `));
+                if(!haveFirst) {
+                    first = Number(prompt(`첫번째 숫자: `));
+                    haveFirst = true;
+                }
+                second = Number(prompt(`두번째 숫자: `));
+
+                if(pm == 1) {
+                    console.log(`${first} + ${second} = ${first + second}`);
+                    first = first + second;
+                } else if(pm == 2) {
+                    if(first < second) {
+                        while(true) {
+                            if(first >= second) break;
+                            console.log('두번째 숫자가 더 클 수 없습니다.');
+                            second = Number(prompt(`두번째 숫자: `));
+                        }
+                    }
+                    console.log(`${first} - ${second} = ${first - second}`);
+                    first = first - second;
+                }
+
+            } else if(select1 == 4) {
+                console.log(`합산된 금액: ${price}`);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
